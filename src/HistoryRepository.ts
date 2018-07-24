@@ -6,23 +6,10 @@ export class HistoryRepository {
         this.max = max;
     }
     items: Array<HistoryItem> = [];
-    push(item: HistoryItem): void {
-        this.items.unshift(item);
-        const knownUris: {
-            [key: string]: boolean;
-        } = {};
-        const newHistory: Array<HistoryItem> = [];
-        this.items.forEach(item => {
-            if (item.editor.document.isClosed) {
-                return;
-            }
-            if (knownUris[item.uri]) {
-                return;
-            }
-            knownUris[item.uri] = true;
-            newHistory.push(item);
-        });
-        this.items = newHistory;
+    push(newItem: HistoryItem): void {
+        const newItems = this.items.filter(item => item.isActive && ! item.equals(newItem));
+        newItems.unshift(newItem);
+        this.items = newItems;
     }
     getItemToTrim(): HistoryItem | undefined {
         if (this.items.length > this.max) {

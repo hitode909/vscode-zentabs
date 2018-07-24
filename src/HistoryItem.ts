@@ -10,6 +10,11 @@ export class HistoryItem {
     }
 
     equals(other: HistoryItem): boolean {
-        return this.uri === other.uri;
+        // comparing editor is better?
+        return this.editor.document === other.editor.document;
+    }
+
+    get isActive(): boolean {
+        return ! this.editor.document.isClosed;
     }
 }
