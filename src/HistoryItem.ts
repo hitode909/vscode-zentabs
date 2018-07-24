@@ -14,6 +14,10 @@ export class HistoryItem {
         return this.editor.document === other.editor.document;
     }
 
+    get viewColumn(): vscode.ViewColumn|undefined {
+        return this.editor.viewColumn;
+    }
+
     get isActive(): boolean {
         return ! this.editor.document.isClosed;
     }
