@@ -3,29 +3,25 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+class GC {
+    inSession: boolean = false;
+
+    start():void {
+        this.inSession = true;
+    }
+    stop():void {
+        this.inSession = false;
+    }
+}
+
 class HistoryRepository {
-    inGC: boolean = false;
+
     readonly max: number;
     constructor(max: number) {
         this.max = max;
     }
 
     items: Array<HistoryItem> = [];
-
-    startGC():void {
-        this.inGC = true;
-    }
-    stopGC():void {
-        this.inGC = false;
-    }
-
-    willClose(item: HistoryItem): boolean {
-        const itemInRepository = this.items.find(i => i.uri === item.uri);
-        if (itemInRepository) {
-            return itemInRepository.willClose;
-        }
-        return false;
-    }
 
     push(item: HistoryItem): void {
         this.items.unshift(item);
@@ -53,7 +49,6 @@ class HistoryRepository {
 }
 class HistoryItem {
     readonly editor: vscode.TextEditor;
-    willClose: boolean = false;
 
     get uri(): string {
         return this.editor.document.uri.toString();
@@ -71,36 +66,34 @@ export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "zentabs" is now active!');
 
     const repository = new HistoryRepository(3);
+    const gc = new GC();
 
     vscode.window.onDidChangeActiveTextEditor(async editor => {
-        try {
-            if (!editor) { return; }
-            if (repository.inGC) {
-                console.log('in GC');
-                return;
-            }
-            const item = new HistoryItem(editor);
-            if (repository.willClose(item)) {
-                return;
-            }
+        if (!editor) { return; }
+        if (gc.inSession) {
+            console.log('in GC');
+            return;
+        }
+        const item = new HistoryItem(editor);
 
-            repository.push(item);
-            console.log(`append ${item.uri}`);
-            console.log(repository.items.map(i => `- ${i.uri}`).join("\n"));
-            const itemToTrim = repository.getItemToTrim();
-            if (itemToTrim) {
-                repository.startGC();
-                itemToTrim.willClose = true;
-                console.log(`close ${itemToTrim.uri}`);
-                await vscode.window.showTextDocument(itemToTrim.editor.document);
-                await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
-                if (!editor.document.isClosed) {
-                    await vscode.window.showTextDocument(editor.document);
-                }
-                repository.stopGC();
+        repository.push(item);
+        console.log(`append ${item.uri}`);
+        console.log(repository.items.map(i => `- ${i.uri}`).join("\n"));
+        const itemToTrim = repository.getItemToTrim();
+        if (!itemToTrim) {
+            return;
+        }
+
+        try {
+            gc.start();
+            console.log(`close ${itemToTrim.uri}`);
+            await vscode.window.showTextDocument(itemToTrim.editor.document);
+            await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+            if (!editor.document.isClosed) {
+                await vscode.window.showTextDocument(editor.document);
             }
-        } catch (error) {
-            repository.stopGC();
+        } finally {
+            gc.stop();
         }
     }, null, context.subscriptions);
 }
