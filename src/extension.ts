@@ -7,7 +7,7 @@ import { HistoryRepository } from './HistoryRepository';
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "zentabs" is now active!');
 
-    const repository = new HistoryRepository(3);
+    const repository = new HistoryRepository();
     const lock = new Lock();
 
     vscode.window.onDidChangeActiveTextEditor(async editor => {

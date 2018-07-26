@@ -13,15 +13,21 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./out/extension",
     "contributes": {
-        "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+        "configuration": {
+            "type": "object",
+            "title": "zentabs configuration",
+            "properties": {
+                "zentabs.maximumOpenedTabs": {
+                    "type": "number",
+                    "default": 3,
+                    "description": "the maximum amount of tabs that will be keep open",
+                    "minimum": 1
+                }
             }
-        ]
+        }
     },
+    "main": "./out/extension",
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",
