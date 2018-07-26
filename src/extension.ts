@@ -19,9 +19,9 @@ export function activate(context: vscode.ExtensionContext) {
         const item = new HistoryItem(editor);
 
         repository.push(item);
-        console.log(`append(${item.viewColumn}) ${item.uri}`);
-        console.log(repository.getItems(item.viewColumn).map(i => `- ${i.uri}`).join("\n"));
-        const itemToTrim = repository.getItemToTrim(item);
+        console.log(`append ${item.uri}`);
+        console.log(repository.items.map(i => `- ${i.uri}`).join("\n"));
+        const itemToTrim = repository.getItemToTrim();
         if (!itemToTrim) {
             return;
         }
