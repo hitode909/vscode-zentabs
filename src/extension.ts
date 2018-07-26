@@ -29,10 +29,10 @@ export function activate(context: vscode.ExtensionContext) {
         try {
             lock.start();
             console.log(`close ${itemToTrim.uri}`);
-            await vscode.window.showTextDocument(itemToTrim.editor.document);
+            await vscode.window.showTextDocument(itemToTrim.editor.document, itemToTrim.editor.viewColumn);
             await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
             if (!editor.document.isClosed) {
-                await vscode.window.showTextDocument(editor.document);
+                await vscode.window.showTextDocument(editor.document, editor.viewColumn);
             }
         } catch (error) {
             lock.stop();
