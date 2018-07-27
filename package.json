@@ -7,6 +7,12 @@
     "engines": {
         "vscode": "^1.25.0"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hitode909/vscode-zentabs"
+    },
+    "icon": "icon.png",
+    "homepage": "https://github.com/hitode909/vscode-zentabs",
     "categories": [
         "Other"
     ],
