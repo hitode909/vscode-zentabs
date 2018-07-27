@@ -4,6 +4,8 @@ Inspired by Atom's [zentabs](https://github.com/ArnaudRinquin/atom-zentabs) pack
 
 ![screenshot](/images/screenshot.gif)
 
-## WARNING
+ ## configuration
 
-Current implementation is very buggy. Do not use.
+- `zentabs.maximumOpenedTabs`
+  - the maximum amount of tabs that will be keep open
+  - Default: 3
