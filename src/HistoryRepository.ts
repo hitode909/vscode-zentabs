@@ -16,8 +16,9 @@ export class HistoryRepository {
     }
 
     getItemToTrim(): HistoryItem | undefined {
-        if (this.items.length > this.max) {
-            return this.items.pop();
+        const items = this.items;
+        if (items.length > this.max) {
+            return items.pop();
         }
     }
 }
