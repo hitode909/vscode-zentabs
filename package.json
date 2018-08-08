@@ -22,7 +22,7 @@
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "zentabs configuration",
+            "title": "zentabs",
             "properties": {
                 "zentabs.maximumOpenedTabs": {
                     "type": "number",
