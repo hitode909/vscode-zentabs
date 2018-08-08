@@ -20,6 +20,10 @@ export class ZenTabs {
         if (!itemToTrim) {
             return;
         }
+        await this.trim(itemToTrim, editor);
+    }
+
+    private async trim(itemToTrim: HistoryItem, editor: vscode.TextEditor) {
         try {
             this.lock.start();
             await vscode.window.showTextDocument(itemToTrim.editor.document, itemToTrim.editor.viewColumn);
