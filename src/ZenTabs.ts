@@ -16,7 +16,7 @@ export class ZenTabs {
         }
         const item = new HistoryItem(editor);
         this.repository.push(item);
-        const itemToTrim = this.repository.getItemToTrim();
+        const itemToTrim = this.repository.getItemToTrim(item);
         if (!itemToTrim) {
             return;
         }

@@ -15,6 +15,16 @@ export class HistoryItem {
     }
 
     get isActive(): boolean {
-        return ! this.editor.document.isClosed;
+        return !this.editor.document.isClosed;
+    }
+
+    get group(): vscode.ViewColumn {
+        if ((vscode.workspace.getConfiguration('zentabs').get('applyLimitFor')) === 'editorGroup') {
+            // group by viewColumn
+            return this.editor.viewColumn || 0;
+        } else {
+            // don't care viewColumn
+            return 0;
+        }
     }
 }
