@@ -13,3 +13,7 @@ This is very initial version. Lot of features in Atom's zentabs are not implemen
 - `zentabs.maximumOpenedTabs`
   - the maximum amount of tabs that will be keep open
   - Default: 3
+
+- `zentabs.applyLimitFor`
+  - apply the maximum amount of tabs for window|editorGroup
+  - Default: window

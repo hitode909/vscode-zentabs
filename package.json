@@ -29,6 +29,12 @@
                     "default": 3,
                     "description": "the maximum amount of tabs that will be keep open",
                     "minimum": 1
+                },
+                "zentabs.applyLimitFor": {
+                    "type": "string",
+                    "default": "window",
+                    "description": "apply the maximum amount of tabs for window|editorGroup",
+                    "enum": ["window", "editorGroup"]
                 }
             }
         }
