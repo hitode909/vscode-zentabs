@@ -34,8 +34,16 @@
                     "type": "string",
                     "default": "window",
                     "description": "apply the maximum amount of tabs for window|editorGroup",
-                    "enum": ["window", "editorGroup"]
-                }
+                    "enum": [
+                        "window",
+                        "editorGroup"
+                    ]
+                },
+                "zentabs.switchWithCurrentTab": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "once limit of maximum tab is reached, switch the newly opened file with current active tab instead of the older one"
+              }
             }
         }
     },
