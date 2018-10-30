@@ -17,3 +17,7 @@ This is very initial version. Lot of features in Atom's zentabs are not implemen
 - `zentabs.applyLimitFor`
   - apply the maximum amount of tabs for window|editorGroup
   - Default: window
+
+- `zentabs.switchWithCurrentTab`
+  - once limit of maximum tab is reached, switch the newly opened file with current active tab instead of the older one
+  - Default: false

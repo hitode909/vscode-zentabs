@@ -29,7 +29,11 @@ export class HistoryRepository {
     getItemToTrim(item: HistoryItem): HistoryItem | undefined {
         const items = this.getItems(item.group);
         if (items.length > this.max) {
+          if (vscode.workspace.getConfiguration('zentabs').get('switchWithCurrentTab')) {
+            return items.splice(1, 1)[0];
+          } else {
             return items.pop();
+          }
         }
     }
 }
