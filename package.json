@@ -2,7 +2,7 @@
     "name": "zentabs",
     "displayName": "zentabs",
     "description": "Keep the opened tabs amount below specified limit",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "hitode909",
     "engines": {
         "vscode": "^1.25.0"
@@ -40,10 +40,10 @@
                     ]
                 },
                 "zentabs.switchWithCurrentTab": {
-                  "type": "boolean",
-                  "default": false,
-                  "description": "once limit of maximum tab is reached, switch the newly opened file with current active tab instead of the older one"
-              }
+                    "type": "boolean",
+                    "default": false,
+                    "description": "once limit of maximum tab is reached, switch the newly opened file with current active tab instead of the older one"
+                }
             }
         }
     },
