@@ -8,6 +8,13 @@ Inspired by Atom's [zentabs](https://github.com/ArnaudRinquin/atom-zentabs) pack
 
 This is very initial version. Lot of features in Atom's zentabs are not implemented.
 
+>**NOTE**  
+>In order to run this extension correctly you should set the following settings
+>```
+>"workbench.editor.enablePreviewFromQuickOpen": false,
+>"workbench.editor.enablePreview": false
+>```
+
  ## configuration
 
 - `zentabs.maximumOpenedTabs`
