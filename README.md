@@ -1,3 +1,8 @@
+# DEPRECATED
+
+You can limit tabs with `workbench.editor.limit.enabled` setting without this extension.
+- https://code.visualstudio.com/updates/v1_42#_limit-the-number-of-open-editors
+
 # zentabs
 
 Inspired by Atom's [zentabs](https://github.com/ArnaudRinquin/atom-zentabs) package.
@@ -8,7 +13,7 @@ Inspired by Atom's [zentabs](https://github.com/ArnaudRinquin/atom-zentabs) pack
 
 This is very initial version. Lot of features in Atom's zentabs are not implemented.
 
->**NOTE**  
+>**NOTE**
 >In order to run this extension correctly you should set the following settings
 >```
 >"workbench.editor.enablePreviewFromQuickOpen": false,
