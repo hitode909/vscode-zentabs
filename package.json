@@ -2,7 +2,7 @@
     "name": "zentabs",
     "displayName": "zentabs",
     "description": "Keep the opened tabs amount below specified limit",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "hitode909",
     "engines": {
         "vscode": "^1.25.0"
